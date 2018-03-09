@@ -59,9 +59,15 @@ private EditText cmonth;
         s=cyear.getText().toString();
         cy= Integer.parseInt(s);
 
+        s="invalid";
 
+        calculating cal=new calculating(d,m,y,cd,cm,cy);
 
+        s = cal.findAge();
 
+        Toast toast;
+        toast = Toast.makeText(this,s,Toast.LENGTH_LONG);
+        toast.show();
 
     }
 
