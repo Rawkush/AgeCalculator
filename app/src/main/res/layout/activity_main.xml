@@ -33,17 +33,41 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/cdate"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:ems="10"
-                android:inputType="date"
-                android:paddingBottom="10dp" />
-
+                android:inputType="number"
+                android:paddingBottom="10dp"
+                android:hint="dd"
+                android:maxLength="2"/>
+            <EditText
+                android:id="@+id/cmonth"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="number"
+                android:paddingBottom="10dp"
+                android:hint="mm"
+                android:maxLength="2"/>
+            <EditText
+                android:id="@+id/cyear"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="number"
+                android:paddingBottom="10dp"
+                android:hint="yyyy"
+                android:maxLength="4"/>
         </LinearLayout>
 
         <TextView
@@ -57,34 +81,59 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/dob"
-                android:layout_width="match_parent"
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:ems="10"
-                android:inputType="date" />
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
+                android:inputType="number"
+                android:hint="dd"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/month"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:paddingTop="20dp"
-                android:text="Calculate The Age" />
-
-            <TextView
-                android:id="@+id/result"
-                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="number"
+                android:paddingBottom="10dp"
+                android:hint="mm"
+                android:maxLength="4"/>
+            <EditText
+                android:id="@+id/year"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text=""
-                android:textColorHighlight="@color/colorPrimary"
-                android:textSize="30sp" />
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="number"
+                android:paddingBottom="10dp"
+                android:hint="yyyy"
+                android:maxLength="4"/>
+
         </LinearLayout>
 
+
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="calculateAge"
+        android:paddingTop="20dp"
+        android:text="Calculate The Age"
+        tools:layout_editor_absoluteY="525dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+
+
     </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>
