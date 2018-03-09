@@ -59,7 +59,7 @@ private EditText cmonth;
         s=cyear.getText().toString();
         cy= Integer.parseInt(s);
 
-        s="invalid";
+        s="INVALID DETAILS";
 
         calculating cal=new calculating(d,m,y,cd,cm,cy);
 
