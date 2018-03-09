@@ -1,5 +1,8 @@
 package com.example.ankush.calculateage;
 
+import android.content.Context;
+import android.widget.Toast;
+
 /**
  * Created by Ankush on 3/9/2018.
  */
@@ -24,7 +27,7 @@ public  calculating(int dd,int mm,int yy,int cdd,int cmm,int cyy){
 }
 
 
-public  String find(){
+private boolean current_validity(){
 
     if(y<=cy&&cy>0&&y>0)
     {
@@ -73,9 +76,95 @@ public  String find(){
 
 
 
+    if(val==1)
+    {
+        return true;
+    }else
+        return false;
+
 
     }
 
+
+    private boolean dob_validity(){
+
+        if(cy>0)
+        {
+            if(cm==1||cm==3||cm==5||cm==7||cm==8||cm==10||cm==12)
+            {
+                if(cd>0&&cd<=31)
+                {
+                   // cout<<"current date is  valid\n";
+                    cval=1;
+                }
+            }
+
+            if(cm==4||cm==6||cm==9||cm==11)
+            {
+                if(cd>0&&cd<=30)
+                {
+                   // cout<<"current date is  valid\n";
+                    cval=1;
+                }
+            }
+
+            if(cy%4==0)
+            {
+                if(cm==2)
+                {
+                    if(cd>0&&cd<=29)
+                    {
+                       // cout<<"current date is  valid \n";
+                        cval=1;
+                    }
+                }
+            }
+
+            if(cy%4!=0)
+            {
+                if(cm==2)
+                {	if(cd>0&&cd<=28)
+                {
+                   // cout<<"current date is valid\n";
+                    cval=1;
+                }
+                }
+            }
+
+        }
+if(val==1)
+{
+    return true;
+}else
+    return false;
+
+    }
+
+
+
+
+
+public  String findAge(){
+
+        if(current_validity()==false||dob_validity()==false)
+        {
+           return "INVALID DETAILS";
+        }else
+            if(current_validity()==true&&dob_validity()==true)
+            {
+
+
+
+
+
+
+            }
+
+
+
+
+
+}
 
 
 }
