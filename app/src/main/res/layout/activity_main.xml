@@ -92,6 +92,7 @@
                 android:ems="10"
                 android:inputType="number"
                 android:hint="dd"
+                android:maxLength="2"
                 android:layout_weight="1"/>
             <EditText
                 android:id="@+id/month"
@@ -103,7 +104,8 @@
                 android:inputType="number"
                 android:paddingBottom="10dp"
                 android:hint="mm"
-                android:maxLength="4"/>
+
+                android:maxLength="2"/>
             <EditText
                 android:id="@+id/year"
                 android:layout_width="wrap_content"
