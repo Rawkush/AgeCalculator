@@ -17,16 +17,18 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/cdateTextview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:text="Enter Today's Date"
-            android:textSize="18dp"
-            />
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,8 +39,10 @@
                 android:id="@+id/cdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:ems="10"
-                android:inputType="date" />
+                android:inputType="date"
+                android:paddingBottom="10dp" />
 
         </LinearLayout>
 
@@ -46,7 +50,10 @@
             android:id="@+id/dobtextview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter D.O.B" />
+            android:layout_marginTop="50dp"
+            android:paddingBottom="20dp"
+            android:text="Enter D.O.B"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,6 +64,7 @@
                 android:id="@+id/dob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:ems="10"
                 android:inputType="date" />
 
@@ -64,13 +72,18 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:paddingTop="20dp"
                 android:text="Calculate The Age" />
 
             <TextView
                 android:id="@+id/result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginTop="40dp"
+                android:text=""
+                android:textColorHighlight="@color/colorPrimary"
+                android:textSize="30sp" />
         </LinearLayout>
 
     </LinearLayout>
