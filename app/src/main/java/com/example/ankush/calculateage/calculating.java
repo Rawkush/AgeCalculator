@@ -27,7 +27,11 @@ public class calculating {
     }
 
 
-    private boolean current_validity() {
+    private boolean dob_validity() {
+
+        if(cy==y&&cm==m&&cd<d){
+            return false;
+        }
 
         if (y <= cy && cy > 0 && y > 0) {
             if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {
@@ -73,7 +77,7 @@ public class calculating {
     }
 
 
-    private boolean dob_validity() {
+    private boolean current_validity() {
 
         if (cy > 0) {
             if (cm == 1 || cm == 3 || cm == 5 || cm == 7 || cm == 8 || cm == 10 || cm == 12) {
