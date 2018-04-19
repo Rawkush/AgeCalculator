@@ -1,2 +1,5 @@
 # calculateAge
-thiS is an app to calculate your age from your date date of birth and current date
+This app takes the user date of birth and calculate his/her age, the app automatically takes the current date from the  mobile and allows user to manullay input it too.
+
+#for any additional feature
+anyone is welcomed for giving ideas for additional feature to be inserted in the app
