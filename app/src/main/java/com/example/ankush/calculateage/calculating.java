@@ -29,10 +29,6 @@ public class calculating {
 
     private boolean dob_validity() {
 
-        if(cy==y&&cm==m&&cd<d){
-            return false;
-        }
-
         if (y <= cy && cy > 0 && y > 0) {
             if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {
                 if (d > 0 && d <= 31) {
@@ -113,7 +109,7 @@ public class calculating {
             }
 
         }
-        if (val == 1) {
+        if (cval == 1) {
             return true;
         } else
             return false;
