@@ -1,4 +1,4 @@
-package com.example.ankush.calculateage;
+package com.appswedevelop.ankush.calculateage;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

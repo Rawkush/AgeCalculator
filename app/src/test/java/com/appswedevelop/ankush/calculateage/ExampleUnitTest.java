@@ -1,4 +1,4 @@
-package com.example.ankush.calculateage;
+package com.appswedevelop.ankush.calculateage;
 
 import org.junit.Test;
 
