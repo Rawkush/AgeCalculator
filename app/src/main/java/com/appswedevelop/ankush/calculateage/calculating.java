@@ -10,57 +10,57 @@ import android.widget.Toast;
 public class calculating {
 
 
-    private int d = 0, m = 0, y = 0;
+    private int day = 0, month = 0, year = 0;
     boolean val=false, cval=false;
 
-    private int cd = 0, cm = 0, cy = 0;
-    private int ty = 0, tm = 0, td = 0;
-    private int lp = 0;
+    private int currDay = 0, currMonth = 0, curryear = 0;
+    private int totalYear = 0, totalMonth = 0, totalDay = 0;
+    private int leapYear = 0;
 
-    public calculating(int dd, int mm, int yy, int cdd, int cmm, int cyy) {
+    public calculating(int day, int month, int year, int currentDay, int currentMonth, int currentYear) {
 
-        d = dd;
-        m = mm;
-        y = yy;
-        cd = cdd;
-        cm = cmm;
-        cy = cyy;
+        this.day = day;
+        this.month = month;
+        this.year = year;
+        this.currDay = currentDay;
+        this.currMonth = currentMonth;
+        this.curryear = currentYear;
 
     }
 
 
     private boolean dob_validity() {
 
-        if(cy==y&&cm==m&&cd<d){
+        if(curryear==year&&currMonth==month&&currDay<day){
             return false;
         }
 
-        if (y <= cy && cy > 0 && y > 0) {
-            if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {
-                if (d > 0 && d <= 31) {
+        if (year <= curryear && curryear > 0 && year > 0) {
+            if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+                if (day > 0 && day <= 31) {
                     // "date is valid\n";
                     val = true;
                 }
-            } else if (m == 4 || m == 6 || m == 9 || m == 11) {
-                if (d > 0 && d <= 30) {
+            } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+                if (day > 0 && day <= 30) {
                     //<"date is valid\n";
                     val = true;
                 }
             }
 
-            if (y % 4 == 0) {
-                lp = 1;
-                if (m == 2) {
-                    if (d > 0 && d <= 29) {
+            if (year % 4 == 0) {
+                leapYear = 1;
+                if (month == 2) {
+                    if (day > 0 && day <= 29) {
                         //" date is valid\n";
                         val = true;
                     }
                 }
             }
 
-            if (y % 4 != 0) {
-                if (m == 2) {
-                    if (d > 0 && d <= 28) {
+            if (year % 4 != 0) {
+                if (month == 2) {
+                    if (day > 0 && day <= 28) {
                         //" date is valid \n";
                         val = true;
                     }
@@ -78,33 +78,33 @@ public class calculating {
 
     private boolean current_validity() {
 
-        if (cy > 0) {
-            if (cm == 1 || cm == 3 || cm == 5 || cm == 7 || cm == 8 || cm == 10 || cm == 12) {
-                if (cd > 0 && cd <= 31) {
+        if (curryear > 0) {
+            if (currMonth == 1 || currMonth == 3 || currMonth == 5 || currMonth == 7 || currMonth == 8 || currMonth == 10 || currMonth == 12) {
+                if (currDay > 0 && currDay <= 31) {
                     // cout<<"current date is  valid\n";
                     cval = true;
                 }
             }
 
-            if (cm == 4 || cm == 6 || cm == 9 || cm == 11) {
-                if (cd > 0 && cd <= 30) {
+            if (currMonth == 4 || currMonth == 6 || currMonth == 9 || currMonth == 11) {
+                if (currDay > 0 && currDay <= 30) {
                     // cout<<"current date is  valid\n";
                     cval = true;
                 }
             }
 
-            if (cy % 4 == 0) {
-                if (cm == 2) {
-                    if (cd > 0 && cd <= 29) {
+            if (curryear % 4 == 0) {
+                if (currMonth == 2) {
+                    if (currDay > 0 && currDay <= 29) {
                         // cout<<"current date is  valid \n";
                         cval = true;
                     }
                 }
             }
 
-            if (cy % 4 != 0) {
-                if (cm == 2) {
-                    if (cd > 0 && cd <= 28) {
+            if (curryear % 4 != 0) {
+                if (currMonth == 2) {
+                    if (currDay > 0 && currDay <= 28) {
                         // cout<<"current date is valid\n";
                         cval = true;
                     }
@@ -118,11 +118,11 @@ public class calculating {
     }
 
 
-    public String findAge() {
+    public boolean AgeStatus() {
 
 
         if (!current_validity() || !dob_validity()) {
-            return "INVALID DETAILS";
+            return false;
         } else {
 
 
@@ -132,31 +132,31 @@ public class calculating {
 // calculating no. of days
 
             if (val && cval) {
-                if (cd > d) {
-                    td = cd - d;
+                if (currDay > day) {
+                    totalDay = currDay - day;
                 }
 
-                if (cd < d) {
+                if (currDay < day) {
 
 
-                    if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {
-                        td = (cd + 31) - d;
+                    if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+                        totalDay = (currDay + 31) - day;
                         in = 1;
                     }
 
-                    if (m == 4 || m == 6 || m == 9 || m == 11) {
-                        td = (cd + 30) - d;
+                    if (month == 4 || month == 6 || month == 9 || month == 11) {
+                        totalDay = (currDay + 30) - day;
                         in = 1;
                     }
 
-                    if (m == 2) {
-                        if (lp == 1) {
-                            td = (cd + 29) - d;
+                    if (month == 2) {
+                        if (leapYear == 1) {
+                            totalDay = (currDay + 29) - day;
                             in = 1;
                         }
 
-                        if (lp == 0) {
-                            td = (cd + 28) - d;
+                        if (leapYear == 0) {
+                            totalDay = (currDay + 28) - day;
                             in = 1;
                         }
 
@@ -165,44 +165,56 @@ public class calculating {
 
                 }
 
-                if (cm > m) {
+                if (currMonth > month) {
                     if (in == 1) {
-                        tm = (cm - 1) - m;
+                        totalMonth = (currMonth - 1) - month;
+
                     }
                     if (in == 0) {
-                        tm = cm - m;
+                        totalMonth = currMonth - month;
                     }
                 }
 
-                if (m > cm) {
+                if (month > currMonth) {
                     s = 1;
                     if (in == 1) {
-                        cm = cm - 1;
-                        cm = cm + 12;
-                        tm = cm - m;
+                        currMonth = currMonth - 1;
+                        currMonth = currMonth + 12;
+                        totalMonth = currMonth - month;
                     }
                     if (in == 0) {
-                        tm = (cm + 12) - m;
+                        totalMonth = (currMonth + 12) - month;
                     }
                 }
 
                 if (s == 1) {
-                    cy = cy - 1;
-                    ty = cy - y;
+                    curryear = curryear - 1;
+                    totalYear = curryear - year;
                 }
                 if (s == 0) ;
                 {
-                    ty = cy - y;
+                    totalYear = curryear - year;
                 }
-                return String.format(" you are %d years %d months %d days old", ty, tm, td);
-
+                    //return String.format(" you are %d years %d months %d days old", ty, tm, td);
+                return true;
             }
 
 
-
         }
+        return false;
+    }
 
-        return "some problem occured";
+
+    public int getTotalYear() {
+        return totalYear;
+    }
+
+    public int getTotalMonth() {
+        return totalMonth;
+    }
+
+    public int getTotalDay() {
+        return totalDay;
     }
 }
 
