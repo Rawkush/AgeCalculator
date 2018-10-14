@@ -10,7 +10,9 @@ import android.widget.Toast;
 public class calculating {
 
 
-    private int d = 0, m = 0, y = 0, val = 0, cval = 0;
+    private int d = 0, m = 0, y = 0;
+    boolean val=false, cval=false;
+
     private int cd = 0, cm = 0, cy = 0;
     private int ty = 0, tm = 0, td = 0;
     private int lp = 0;
@@ -37,12 +39,12 @@ public class calculating {
             if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {
                 if (d > 0 && d <= 31) {
                     // "date is valid\n";
-                    val = 1;
+                    val = true;
                 }
             } else if (m == 4 || m == 6 || m == 9 || m == 11) {
                 if (d > 0 && d <= 30) {
                     //<"date is valid\n";
-                    val = 1;
+                    val = true;
                 }
             }
 
@@ -51,7 +53,7 @@ public class calculating {
                 if (m == 2) {
                     if (d > 0 && d <= 29) {
                         //" date is valid\n";
-                        val = 1;
+                        val = true;
                     }
                 }
             }
@@ -60,7 +62,7 @@ public class calculating {
                 if (m == 2) {
                     if (d > 0 && d <= 28) {
                         //" date is valid \n";
-                        val = 1;
+                        val = true;
                     }
                 }
             }
@@ -68,10 +70,7 @@ public class calculating {
         }
 
 
-        if (val == 1) {
-            return true;
-        } else
-            return false;
+       return val;
 
 
     }
@@ -83,14 +82,14 @@ public class calculating {
             if (cm == 1 || cm == 3 || cm == 5 || cm == 7 || cm == 8 || cm == 10 || cm == 12) {
                 if (cd > 0 && cd <= 31) {
                     // cout<<"current date is  valid\n";
-                    cval = 1;
+                    cval = true;
                 }
             }
 
             if (cm == 4 || cm == 6 || cm == 9 || cm == 11) {
                 if (cd > 0 && cd <= 30) {
                     // cout<<"current date is  valid\n";
-                    cval = 1;
+                    cval = true;
                 }
             }
 
@@ -98,7 +97,7 @@ public class calculating {
                 if (cm == 2) {
                     if (cd > 0 && cd <= 29) {
                         // cout<<"current date is  valid \n";
-                        cval = 1;
+                        cval = true;
                     }
                 }
             }
@@ -107,16 +106,14 @@ public class calculating {
                 if (cm == 2) {
                     if (cd > 0 && cd <= 28) {
                         // cout<<"current date is valid\n";
-                        cval = 1;
+                        cval = true;
                     }
                 }
             }
 
         }
-        if (cval == 1) {
-            return true;
-        } else
-            return false;
+
+        return cval;
 
     }
 
@@ -134,7 +131,7 @@ public class calculating {
 
 // calculating no. of days
 
-            if (val == 1 && cval == 1) {
+            if (val && cval) {
                 if (cd > d) {
                     td = cd - d;
                 }
