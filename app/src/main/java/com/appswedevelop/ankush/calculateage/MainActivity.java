@@ -16,6 +16,11 @@ public class MainActivity extends AppCompatActivity {
 
 private Button button;
 private EditText cdate,date,year,cyear,month,cmonth;
+private  TextView ageDate,ageMonth,ageYear;
+
+
+    int d=0,m=0,y=0;
+    int cd=0,cm=0,cy=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +33,23 @@ private EditText cdate,date,year,cyear,month,cmonth;
         cyear =(EditText) findViewById(R.id.cyear);
         month =(EditText) findViewById(R.id.month);
         cmonth =(EditText) findViewById(R.id.cmonth);
+        ageDate=findViewById(R.id.ageDay);
+        ageMonth=findViewById(R.id.ageMonth);
+        ageYear=findViewById(R.id.ageYear);
 
         initDefaults(); // setting default date
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                readUserInput();
+                if(readUserInput()){
+
+                    findAge();
+
+
+                }else{
+                    //TODO: display enter all details
+                }
             }
         });
 
@@ -60,16 +75,13 @@ private EditText cdate,date,year,cyear,month,cmonth;
         return (formatter.format(date));
     }
 
-    public void readUserInput() {
 
-
-        int d=0,m=0,y=0;
-        int cd=0,cm=0,cy=0;
+    private boolean readUserInput() {
 
         String s=null;
         s=date.getText().toString();
         if(s.equals("")){
-            return;
+            return false;
         }
 
         d= Integer.parseInt(s);
@@ -78,43 +90,48 @@ private EditText cdate,date,year,cyear,month,cmonth;
         s=month.getText().toString();
 
         if(s.equals("")){
-            return;
+            return false;
         }
         m= Integer.parseInt(s);
 
         s=year.getText().toString();
         if(s.equals("")){
-            return;
+            return false;
         }
         y= Integer.parseInt(s);
 
         s=cdate.getText().toString();
         if(s.equals("")){
-            return;
+            return false;
         }
         cd= Integer.parseInt(s);
 
         s=cmonth.getText().toString();
         if(s.equals("")){
-            return;
+            return false;
         }
         cm= Integer.parseInt(s);
 
         s=cyear.getText().toString();
         if(s.equals("")){
-            return;
+            return false;
         }
 
         cy= Integer.parseInt(s);
-        calculating cal=new calculating(d,m,y,cd,cm,cy);
 
+        return true;
+    }
+
+    private void findAge(){
+
+        calculating cal=new calculating(d,m,y,cd,cm,cy);
         // if Dates are Valid
         if(cal.AgeStatus()){
 
+            ageYear.setText(String.valueOf(cal.getTotalYear())+" years");
+            ageMonth.setText(String.valueOf(cal.getTotalMonth())+" months");
+            ageDate.setText(String.valueOf(cal.getTotalDay())+" Days");
         }
-
     }
-
-
 
 }

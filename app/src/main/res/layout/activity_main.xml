@@ -9,17 +9,22 @@
     tools:context="com.appswedevelop.ankush.calculateage.MainActivity">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -135,14 +140,44 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:paddingTop="20dp"
                 android:text="Calculate The Age"
                 tools:layout_editor_absoluteY="525dp" />
 
 
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/ageYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/ageMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/ageDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView" />
+            </LinearLayout>
+
+
         </LinearLayout>
+
     </ScrollView>
 
 
