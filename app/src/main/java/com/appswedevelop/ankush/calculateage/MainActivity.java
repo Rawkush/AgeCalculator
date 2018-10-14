@@ -31,6 +31,13 @@ private EditText cdate,date,year,cyear,month,cmonth;
 
         initDefaults(); // setting default date
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                readUserInput();
+            }
+        });
+
     }
 
     private void initDefaults(){
@@ -53,7 +60,7 @@ private EditText cdate,date,year,cyear,month,cmonth;
         return (formatter.format(date));
     }
 
-    public void calculateAge() {
+    public void readUserInput() {
 
 
         int d=0,m=0,y=0;
@@ -61,32 +68,50 @@ private EditText cdate,date,year,cyear,month,cmonth;
 
         String s=null;
         s=date.getText().toString();
+        if(s.equals("")){
+            return;
+        }
+
         d= Integer.parseInt(s);
 
+
         s=month.getText().toString();
+
+        if(s.equals("")){
+            return;
+        }
         m= Integer.parseInt(s);
 
         s=year.getText().toString();
+        if(s.equals("")){
+            return;
+        }
         y= Integer.parseInt(s);
 
         s=cdate.getText().toString();
+        if(s.equals("")){
+            return;
+        }
         cd= Integer.parseInt(s);
 
         s=cmonth.getText().toString();
+        if(s.equals("")){
+            return;
+        }
         cm= Integer.parseInt(s);
 
         s=cyear.getText().toString();
+        if(s.equals("")){
+            return;
+        }
+
         cy= Integer.parseInt(s);
-
-        s="INVALID DETAILS";
-
         calculating cal=new calculating(d,m,y,cd,cm,cy);
 
-        s = cal.findAge();
+        // if Dates are Valid
+        if(cal.AgeStatus()){
 
-        Toast toast;
-        toast = Toast.makeText(this,s,Toast.LENGTH_LONG);
-        toast.show();
+        }
 
     }
 
