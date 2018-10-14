@@ -113,7 +113,7 @@ public class calculating {
             }
 
         }
-        if (val == 1) {
+        if (cval == 1) {
             return true;
         } else
             return false;
@@ -124,7 +124,7 @@ public class calculating {
     public String findAge() {
 
 
-        if (current_validity() == false || dob_validity() == false) {
+        if (!current_validity() || !dob_validity()) {
             return "INVALID DETAILS";
         } else {
 
