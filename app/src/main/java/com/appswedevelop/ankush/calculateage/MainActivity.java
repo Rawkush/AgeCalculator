@@ -25,7 +25,7 @@ private  TextView ageDate,ageMonth,ageYear;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.new_main_activity);
         button =(Button) findViewById(R.id.button);
         cdate =(EditText) findViewById(R.id.cdate);
         date = (EditText) findViewById(R.id.date);

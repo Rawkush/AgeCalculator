@@ -80,6 +80,7 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:paddingBottom="10dp"
+                    android:textColor="@color/white"
                     android:textColorHint="@color/grey_600" />
 
                 <TextView
@@ -102,6 +103,7 @@
                     android:inputType="number"
                     android:maxLength="4"
                     android:paddingBottom="10dp"
+                    android:textColor="@color/white"
                     android:textColorHint="@color/grey_600" />
 
                 <ImageButton
@@ -235,7 +237,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -269,7 +271,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="18dp">
 
                     <TextView
                         android:id="@+id/ageYear"
@@ -295,6 +297,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:paddingLeft="15dp"
                         android:text="00"
                         android:textColor="@color/white"
                         android:textSize="34sp" />
