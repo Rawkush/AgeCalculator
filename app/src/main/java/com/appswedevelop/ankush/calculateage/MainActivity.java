@@ -1,19 +1,21 @@
 package com.appswedevelop.ankush.calculateage;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appswedevelop.ankush.calculateage.exception.DobExceptions;
-import com.appswedevelop.ankush.calculateage.fragment.datePickerFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -40,16 +42,15 @@ private ImageButton ibCurrent,ibDob;
         ibCurrent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment newFragment = new datePickerFragment();
-                newFragment.show(getFragmentManager(), "currentDate");
+                openDatePicker("current");
+
             }
         });
 
         ibDob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment newFragment = new datePickerFragment();
-                newFragment.show(getFragmentManager(), "DOB");
+                openDatePicker("dob");
             }
         });
 
@@ -78,6 +79,52 @@ private ImageButton ibCurrent,ibDob;
 
     }
 
+    private void openDatePicker(final String id){
+
+
+
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                if(id.equals("DOB")){
+                    setEdDOB(dayOfMonth,monthOfYear,year);
+                }else{
+                    setEdCurrentDates(dayOfMonth,monthOfYear,year);
+
+                }
+
+
+
+            }
+
+        };
+
+        new DatePickerDialog(this, date,currYear,currMonth,currDate ).show();
+
+
+
+    }
+
+    private void setEdCurrentDates(int day,int month, int year){
+
+        edCurrentDate.setText(String.valueOf(day));
+        edCurrentMonth.setText(String.valueOf(month));
+        edCurrentYear.setText(String.valueOf(year));
+        currDate=day;
+        currMonth=month;
+        currYear=year;
+    }
+    private void setEdDOB(int day,int month, int year){
+
+        edDate.setText(String.valueOf(day));
+        edCurrentMonth.setText(String.valueOf(month));
+        edYear.setText(String.valueOf(year));
+    }
+
+
     private void initialiseViews(){
         button =(Button) findViewById(R.id.button);
         edCurrentDate =(EditText) findViewById(R.id.cdate);
@@ -94,10 +141,8 @@ private ImageButton ibCurrent,ibDob;
     }
 
     private void setDefaultTime(){
-
-        edCurrentDate.setText(Calendar.DATE);
-        edCurrentMonth.setText(Calendar.MONTH);
-        edCurrentYear.setText(Calendar.YEAR);
+        final Calendar c = Calendar.getInstance();
+        setEdCurrentDates(c.get(Calendar.DATE),   c.get(Calendar.MONTH), c.get(Calendar.YEAR));
       /*  String s=getTodaysDefaultDate();
 
         if(s!=null){
@@ -186,6 +231,7 @@ private ImageButton ibCurrent,ibDob;
 
         }
     }
+
 
 
 
