@@ -3,11 +3,13 @@ package com.appswedevelop.ankush.calculateage;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.appswedevelop.ankush.calculateage.exception.DobExceptions;
+
 /**
  * Created by Ankush on 3/9/2018.
  */
 
-public class calculating {
+public class calculating  {
 
 
     private int day = 0, month = 0, year = 0;
@@ -29,10 +31,10 @@ public class calculating {
     }
 
 
-    private boolean dob_validity() {
+    private boolean dob_validity() throws DobExceptions {
 
-        if(curryear==year&&currMonth==month&&currDay<day){
-            return false;
+        if((curryear==year&&currMonth==month&&day>currDay)||(year>curryear)||(year==curryear&&month>currMonth)){
+            throw new DobExceptions("You are Yet to be Born");
         }
 
         if (year <= curryear && curryear > 0 && year > 0) {
@@ -118,13 +120,15 @@ public class calculating {
     }
 
 
-    public boolean AgeStatus() {
+    public boolean AgeStatus() throws DobExceptions{
 
+        if(!current_validity())
+            throw new DobExceptions("Current date is not Valid");
+        else
+        if( !dob_validity())
+            throw new DobExceptions("DOB is not Valid");
 
-        if (!current_validity() || !dob_validity()) {
-            return false;
-        } else {
-
+        else {
 
             int in = 0, s = 0;
 

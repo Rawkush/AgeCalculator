@@ -107,6 +107,7 @@
                     android:textColorHint="@color/grey_600" />
 
                 <ImageButton
+                    android:id="@+id/ibcurr"
                     android:layout_width="55dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
@@ -190,6 +191,7 @@
                     android:textColorHint="@color/grey_600" />
 
                 <ImageButton
+                    android:id="@+id/ibdob"
                     android:layout_width="55dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"

@@ -1,13 +1,17 @@
 package com.appswedevelop.ankush.calculateage;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.appswedevelop.ankush.calculateage.exception.DobExceptions;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,29 +19,19 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
 private Button button;
-private EditText cdate,date,year,cyear,month,cmonth;
+private EditText edCurrentDate,edDate,edYear,edCurrentYear,edMonth,edCurrentMonth;
 private  TextView ageDate,ageMonth,ageYear;
+private ImageButton ibCurrent,ibDob;
 
-
-    int d=0,m=0,y=0;
-    int cd=0,cm=0,cy=0;
+    int day=0,month=0,year=0;
+    int currdate=0,currMonth=0,currYear=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_main_activity);
-        button =(Button) findViewById(R.id.button);
-        cdate =(EditText) findViewById(R.id.cdate);
-        date = (EditText) findViewById(R.id.date);
-        year =(EditText) findViewById(R.id.year);
-        cyear =(EditText) findViewById(R.id.cyear);
-        month =(EditText) findViewById(R.id.month);
-        cmonth =(EditText) findViewById(R.id.cmonth);
-        ageDate=findViewById(R.id.ageDay);
-        ageMonth=findViewById(R.id.ageMonth);
-        ageYear=findViewById(R.id.ageYear);
-
-        initDefaults(); // setting default date
+        initialiseViews();
+        setDefaultTime(); // setting default date
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,16 +49,31 @@ private  TextView ageDate,ageMonth,ageYear;
 
     }
 
-    private void initDefaults(){
+    private void initialiseViews(){
+        button =(Button) findViewById(R.id.button);
+        edCurrentDate =(EditText) findViewById(R.id.cdate);
+        edDate = (EditText) findViewById(R.id.date);
+        edYear =(EditText) findViewById(R.id.year);
+        edCurrentYear =(EditText) findViewById(R.id.cyear);
+        edMonth =(EditText) findViewById(R.id.month);
+        edCurrentMonth =(EditText) findViewById(R.id.cmonth);
+        ageDate=findViewById(R.id.ageDay);
+        ageMonth=findViewById(R.id.ageMonth);
+        ageYear=findViewById(R.id.ageYear);
+        ibCurrent=findViewById(R.id.ibcurr);
+        ibDob=findViewById(R.id.ibdob);
+    }
+
+    private void setDefaultTime(){
 
         String s=getTodaysDefaultDate();
 
         if(s!=null){
 
             String[] a=s.split("/");
-            cdate.setText(a[0]);
-            cmonth.setText(a[1]);
-            cyear.setText(a[2]);
+            edCurrentDate.setText(a[0]);
+            edCurrentMonth.setText(a[1]);
+            edCurrentYear.setText(a[2]);
         }
 
     }
@@ -79,59 +88,71 @@ private  TextView ageDate,ageMonth,ageYear;
     private boolean readUserInput() {
 
         String s=null;
-        s=date.getText().toString();
+        s=edDate.getText().toString();
         if(s.equals("")){
             return false;
         }
 
-        d= Integer.parseInt(s);
+        day= Integer.parseInt(s);
 
 
-        s=month.getText().toString();
+        s=edMonth.getText().toString();
 
         if(s.equals("")){
             return false;
         }
-        m= Integer.parseInt(s);
+        month= Integer.parseInt(s);
 
-        s=year.getText().toString();
+        s=edYear.getText().toString();
         if(s.equals("")){
             return false;
         }
-        y= Integer.parseInt(s);
+        year= Integer.parseInt(s);
 
-        s=cdate.getText().toString();
+        s=edCurrentDate.getText().toString();
         if(s.equals("")){
             return false;
         }
-        cd= Integer.parseInt(s);
+        currdate= Integer.parseInt(s);
 
-        s=cmonth.getText().toString();
+        s=edCurrentMonth.getText().toString();
         if(s.equals("")){
             return false;
         }
-        cm= Integer.parseInt(s);
+        currMonth= Integer.parseInt(s);
 
-        s=cyear.getText().toString();
+        s=edCurrentYear.getText().toString();
         if(s.equals("")){
             return false;
         }
 
-        cy= Integer.parseInt(s);
+        currYear= Integer.parseInt(s);
 
         return true;
     }
 
+
+
+    @SuppressLint("SetTextI18n")
     private void findAge(){
 
-        calculating cal=new calculating(d,m,y,cd,cm,cy);
+        calculating cal=new calculating(day,month,year,currdate,currMonth,currYear);
         // if Dates are Valid
-        if(cal.AgeStatus()){
+        try {
+            if(cal.AgeStatus()){
 
-            ageYear.setText(String.valueOf(cal.getTotalYear())+" years");
-            ageMonth.setText(String.valueOf(cal.getTotalMonth())+" months");
-            ageDate.setText(String.valueOf(cal.getTotalDay())+" Days");
+                ageYear.setText(String.valueOf(cal.getTotalYear())+" years");
+                ageMonth.setText(String.valueOf(cal.getTotalMonth())+" months");
+                ageDate.setText(String.valueOf(cal.getTotalDay())+" Days");
+            }
+        } catch (DobExceptions dobExceptions) {
+
+            dobExceptions.printStackTrace();
+            //TODO: Toast showing the exception
+
         }
     }
+
+
 
 }
