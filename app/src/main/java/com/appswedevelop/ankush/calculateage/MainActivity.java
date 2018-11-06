@@ -27,9 +27,8 @@ private Button button;
 private EditText edCurrentDate,edDate,edYear,edCurrentYear,edMonth,edCurrentMonth;
 private  TextView ageDate,ageMonth,ageYear;
 private ImageButton ibCurrent,ibDob;
-
-    int day=0,month=0,year=0;
-    int currDate=0,currMonth=0,currYear=0;
+int day=0,month=0,year=0;
+int currDate=0,currMonth=0,currYear=0;
 
 
     @Override
@@ -46,7 +45,6 @@ private ImageButton ibCurrent,ibDob;
 
             }
         });
-
         ibDob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,20 +57,8 @@ private ImageButton ibCurrent,ibDob;
             @Override
             public void onClick(View view) {
 
-
-                try {
-                    readUserInput();
-                } catch (DobExceptions dobExceptions) {
-                    dobExceptions.printStackTrace();
-                    // using this--> dobExceptions.getMessage();
-                    //TODO mark all editText which are empty as red
-
-
-                }
-
+                readUserInput();
                 findAge();
-
-
 
             }
         });
@@ -111,7 +97,7 @@ private ImageButton ibCurrent,ibDob;
     private void setEdCurrentDates(int day,int month, int year){
 
         edCurrentDate.setText(String.valueOf(day));
-        edCurrentMonth.setText(String.valueOf(month));
+        edCurrentMonth.setText(String.valueOf(month+1));
         edCurrentYear.setText(String.valueOf(year));
         currDate=day;
         currMonth=month;
@@ -121,7 +107,7 @@ private ImageButton ibCurrent,ibDob;
     private void setEdDOB(int day,int month, int year){
 
         edDate.setText(String.valueOf(day));
-        edMonth.setText(String.valueOf(month));
+        edMonth.setText(String.valueOf(month +1));
         edYear.setText(String.valueOf(year));
     }
 
@@ -163,51 +149,50 @@ private ImageButton ibCurrent,ibDob;
     }*/
 
 
-    private void readUserInput() throws DobExceptions{
+    private void readUserInput(){
 
-        String s=null,error="";
-
+        String s;
         s=edDate.getText().toString();
         if(s.equals("")){
-            error=error+"day.";
+            edDate.setError("This field can not be blank");
         }else
         day= Integer.parseInt(s);
 
 
         s=edMonth.getText().toString();
-
         if(s.equals("")){
-            error=error+"month.";
+            edMonth.setError("This field can not be blank");
         }else
         month= Integer.parseInt(s);
 
         s=edYear.getText().toString();
         if(s.equals("")){
-            error=error+"Year.";
+            edYear.setError("This field can not be blank");
         }else
         year= Integer.parseInt(s);
 
         s=edCurrentDate.getText().toString();
         if(s.equals("")){
-            error=error+"curDay";
+            edCurrentDate.setError("This field can not be blank");
         }else
         currDate= Integer.parseInt(s);
 
         s=edCurrentMonth.getText().toString();
         if(s.equals("")){
-            error=error+"currMonth";
+            edCurrentMonth.setError("This field can not be blank");
         }else
         currMonth= Integer.parseInt(s);
 
         s=edCurrentYear.getText().toString();
         if(s.equals("")){
-            error=error+"currYear";
+            edCurrentYear.setError("This field can not be blank");
         }else
         currYear= Integer.parseInt(s);
 
+        /*
         if(error.length()>0)
             throw new DobExceptions(error);
-
+        */
     }
 
 
@@ -219,7 +204,6 @@ private ImageButton ibCurrent,ibDob;
         // if Dates are Valid
         try {
             if(cal.AgeStatus()){
-
                 ageYear.setText(String.valueOf(cal.getTotalYear())+" years");
                 ageMonth.setText(String.valueOf(cal.getTotalMonth())+" months");
                 ageDate.setText(String.valueOf(cal.getTotalDay())+" Days");
@@ -227,8 +211,9 @@ private ImageButton ibCurrent,ibDob;
         } catch (DobExceptions dobExceptions) {
 
             dobExceptions.printStackTrace();
-            //TODO: Toast showing the exception
+            //TODO: Use something better than toast
             // using this--> dobExceptions.getMessage();
+            Toast.makeText(this,dobExceptions.getMessage(),Toast.LENGTH_SHORT).show();
 
         }
     }
