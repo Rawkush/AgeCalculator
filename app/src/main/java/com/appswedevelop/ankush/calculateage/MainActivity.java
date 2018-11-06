@@ -111,7 +111,7 @@ private ImageButton ibCurrent,ibDob;
     private void setEdCurrentDates(int day,int month, int year){
 
         edCurrentDate.setText(String.valueOf(day));
-        edCurrentMonth.setText(String.valueOf(month));
+        edCurrentMonth.setText(String.valueOf(month+1));
         edCurrentYear.setText(String.valueOf(year));
         currDate=day;
         currMonth=month;
@@ -121,7 +121,7 @@ private ImageButton ibCurrent,ibDob;
     private void setEdDOB(int day,int month, int year){
 
         edDate.setText(String.valueOf(day));
-        edMonth.setText(String.valueOf(month));
+        edMonth.setText(String.valueOf(month +1));
         edYear.setText(String.valueOf(year));
     }
 
