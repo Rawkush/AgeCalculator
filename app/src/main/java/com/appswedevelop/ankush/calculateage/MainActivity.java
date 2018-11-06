@@ -1,6 +1,7 @@
 package com.appswedevelop.ankush.calculateage;
 
 import android.annotation.SuppressLint;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,8 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appswedevelop.ankush.calculateage.exception.DobExceptions;
+import com.appswedevelop.ankush.calculateage.fragment.datePickerFragment;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,26 +27,52 @@ private  TextView ageDate,ageMonth,ageYear;
 private ImageButton ibCurrent,ibDob;
 
     int day=0,month=0,year=0;
-    int currdate=0,currMonth=0,currYear=0;
+    int currDate=0,currMonth=0,currYear=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_main_activity);
+
         initialiseViews();
         setDefaultTime(); // setting default date
+        ibCurrent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment newFragment = new datePickerFragment();
+                newFragment.show(getFragmentManager(), "currentDate");
+            }
+        });
+
+        ibDob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment newFragment = new datePickerFragment();
+                newFragment.show(getFragmentManager(), "DOB");
+            }
+        });
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(readUserInput()){
-
-                    findAge();
 
 
-                }else{
-                    //TODO: display enter all details
+                try {
+                    readUserInput();
+                } catch (DobExceptions dobExceptions) {
+                    dobExceptions.printStackTrace();
+                    // using this--> dobExceptions.getMessage();
+                    //TODO mark all editText which are empty as red
+
+
                 }
+
+                findAge();
+
+
+
             }
         });
 
@@ -66,7 +95,10 @@ private ImageButton ibCurrent,ibDob;
 
     private void setDefaultTime(){
 
-        String s=getTodaysDefaultDate();
+        edCurrentDate.setText(Calendar.DATE);
+        edCurrentMonth.setText(Calendar.MONTH);
+        edCurrentYear.setText(Calendar.YEAR);
+      /*  String s=getTodaysDefaultDate();
 
         if(s!=null){
 
@@ -75,60 +107,61 @@ private ImageButton ibCurrent,ibDob;
             edCurrentMonth.setText(a[1]);
             edCurrentYear.setText(a[2]);
         }
-
+*/
     }
 
-    private String getTodaysDefaultDate(){
+    /*private String getTodaysDefaultDate(){
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         return (formatter.format(date));
-    }
+    }*/
 
 
-    private boolean readUserInput() {
+    private void readUserInput() throws DobExceptions{
 
-        String s=null;
+        String s=null,error="";
+
         s=edDate.getText().toString();
         if(s.equals("")){
-            return false;
-        }
-
+            error=error+"day.";
+        }else
         day= Integer.parseInt(s);
 
 
         s=edMonth.getText().toString();
 
         if(s.equals("")){
-            return false;
-        }
+            error=error+"month.";
+        }else
         month= Integer.parseInt(s);
 
         s=edYear.getText().toString();
         if(s.equals("")){
-            return false;
-        }
+            error=error+"Year.";
+        }else
         year= Integer.parseInt(s);
 
         s=edCurrentDate.getText().toString();
         if(s.equals("")){
-            return false;
-        }
-        currdate= Integer.parseInt(s);
+            error=error+"curDay";
+        }else
+        currDate= Integer.parseInt(s);
 
         s=edCurrentMonth.getText().toString();
         if(s.equals("")){
-            return false;
-        }
+            error=error+"currMonth";
+        }else
         currMonth= Integer.parseInt(s);
 
         s=edCurrentYear.getText().toString();
         if(s.equals("")){
-            return false;
-        }
-
+            error=error+"currYear";
+        }else
         currYear= Integer.parseInt(s);
 
-        return true;
+        if(error.length()>0)
+            throw new DobExceptions(error);
+
     }
 
 
@@ -136,7 +169,7 @@ private ImageButton ibCurrent,ibDob;
     @SuppressLint("SetTextI18n")
     private void findAge(){
 
-        calculating cal=new calculating(day,month,year,currdate,currMonth,currYear);
+        calculating cal=new calculating(day,month,year,currDate,currMonth,currYear);
         // if Dates are Valid
         try {
             if(cal.AgeStatus()){
@@ -149,9 +182,12 @@ private ImageButton ibCurrent,ibDob;
 
             dobExceptions.printStackTrace();
             //TODO: Toast showing the exception
+            // using this--> dobExceptions.getMessage();
 
         }
     }
+
+
 
 
 
