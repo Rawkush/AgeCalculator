@@ -89,7 +89,7 @@ private ImageButton ibCurrent,ibDob;
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
                 // TODO Auto-generated method stub
-                if(id.equals("DOB")){
+                if(id.equals("dob")){
                     setEdDOB(dayOfMonth,monthOfYear,year);
                 }else{
                     setEdCurrentDates(dayOfMonth,monthOfYear,year);
@@ -117,10 +117,11 @@ private ImageButton ibCurrent,ibDob;
         currMonth=month;
         currYear=year;
     }
+
     private void setEdDOB(int day,int month, int year){
 
         edDate.setText(String.valueOf(day));
-        edCurrentMonth.setText(String.valueOf(month));
+        edMonth.setText(String.valueOf(month));
         edYear.setText(String.valueOf(year));
     }
 
