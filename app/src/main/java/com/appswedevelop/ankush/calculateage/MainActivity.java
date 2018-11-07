@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
 private Button button;
 private EditText edCurrentDate,edDate,edYear,edCurrentYear,edMonth,edCurrentMonth;
-private  TextView ageDate,ageMonth,ageYear;
+private  TextView ageDate,ageMonth,ageYear,nextBDMonthLeft,nextBDDaysLeft;
 private ImageButton ibCurrent,ibDob;
 int day=0,month=0,year=0;
 int currDate=0,currMonth=0,currYear=0;
@@ -51,19 +51,19 @@ int currDate=0,currMonth=0,currYear=0;
                 openDatePicker("dob");
             }
         });
-
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 readUserInput();
                 findAge();
-
+                nextBirthday(currYear+1);
             }
         });
 
     }
+
+
 
     private void openDatePicker(final String id){
 
@@ -111,7 +111,6 @@ int currDate=0,currMonth=0,currYear=0;
         edYear.setText(String.valueOf(year));
     }
 
-
     private void initialiseViews(){
         button =(Button) findViewById(R.id.button);
         edCurrentDate =(EditText) findViewById(R.id.cdate);
@@ -125,6 +124,8 @@ int currDate=0,currMonth=0,currYear=0;
         ageYear=findViewById(R.id.ageYear);
         ibCurrent=findViewById(R.id.ibcurr);
         ibDob=findViewById(R.id.ibdob);
+        nextBDDaysLeft=findViewById(R.id.nextBDDaysLeft);
+        nextBDMonthLeft=findViewById(R.id.nextBDMonthsLeft);
     }
 
     private void setDefaultTime(){
@@ -219,7 +220,31 @@ int currDate=0,currMonth=0,currYear=0;
     }
 
 
+    private void nextBirthday(int nextYear){
 
+        calculating cal;
+        if((currMonth>month)||(currMonth==month&&currDate>=day))
+             cal=new calculating(currDate,currMonth,currYear,day,month,nextYear);
+        else
+            cal=new calculating(currDate,currMonth,currYear,day,month,currYear);
+
+
+        try {
+            if(cal.AgeStatus()){
+                if(cal.getTotalYear()>0)
+                    nextBDMonthLeft.setText("12");
+                else
+                    nextBDMonthLeft.setText(""+cal.getTotalMonth());
+
+                nextBDDaysLeft.setText(""+cal.getTotalDay());
+
+            }
+        } catch (DobExceptions dobExceptions) {
+            dobExceptions.printStackTrace();
+        }
+
+
+    }
 
 
 
