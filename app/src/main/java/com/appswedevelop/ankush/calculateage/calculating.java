@@ -13,7 +13,7 @@ public class calculating  {
 
 
     private int day = 0, month = 0, year = 0;
-    boolean val=false, cval=false;
+    private boolean val=false, cval=false;
 
     private int currDay = 0, currMonth = 0, curryear = 0;
     private int totalYear = 0, totalMonth = 0, totalDay = 0;
@@ -37,7 +37,7 @@ public class calculating  {
             throw new DobExceptions("You are Yet to be Born");
         }
 
-        if (year <= curryear && curryear > 0 && year > 0) {
+        if ( year <= curryear && curryear > 0 && year > 0) {
             if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
                 if (day > 0 && day <= 31) {
                     // "date is valid\n";
