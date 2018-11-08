@@ -214,35 +214,37 @@ public class calculating  {
                 }
 
                 if (currMonth > month) {
-                    if (in == 1) {
+                   /* if (in == 1) {
                         totalMonth = (currMonth - 1) - month;
 
-                    }
+                    }else
                     if (in == 0) {
-                        totalMonth = currMonth - month;
-                    }
-                }
+                   */     totalMonth = currMonth-in - month;
+                  //  }
+                }else
 
                 if (month >= currMonth) {
-                    s = 1;
                     if (in == 1) {
                         currMonth = currMonth - 1;
                         currMonth = currMonth + 12;
+                        s = 1;
+
+
                         totalMonth = currMonth - month;
                     }
                     if (in == 0) {
-                        totalMonth = (currMonth + 12) - month;
+                        totalMonth = (currMonth )-in - month;
                     }
                 }
-
-                if (s == 1) {
-                    curryear = curryear - 1;
-                    totalYear = curryear - year;
-                }
+/*
                 if (s == 0)
                 {
                     totalYear = curryear - year;
-                }
+                }else
+                if (s == 1) {
+                    curryear = curryear - 1;*/
+                    totalYear = curryear -s - year;
+  //              }
                     //return String.format(" you are %d years %d months %d days old", ty, tm, td);
                 return true;
             }
