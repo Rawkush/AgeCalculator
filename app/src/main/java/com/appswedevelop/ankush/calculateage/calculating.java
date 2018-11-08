@@ -14,10 +14,10 @@ public class calculating  {
 
     private int day = 0, month = 0, year = 0;
     private boolean val=false, cval=false;
-
     private int currDay = 0, currMonth = 0, curryear = 0;
     private int totalYear = 0, totalMonth = 0, totalDay = 0;
     private int leapYear = 0;
+
 
     public calculating(int day, int month, int year, int currentDay, int currentMonth, int currentYear) {
 
@@ -29,6 +29,7 @@ public class calculating  {
         this.curryear = currentYear;
 
     }
+
 
 
     private boolean dob_validity() throws DobExceptions {
@@ -50,6 +51,19 @@ public class calculating  {
                 }
             }
 
+            if(year%100==0){
+                if(year%400==0){
+                    leapYear=1;
+                    if (month == 2) {
+                        if (day > 0 && day <= 29) {
+                            //" date is valid\n";
+                            val = true;
+                        }
+                    }
+                }
+            }else
+
+
             if (year % 4 == 0) {
                 leapYear = 1;
                 if (month == 2) {
@@ -59,6 +73,9 @@ public class calculating  {
                     }
                 }
             }
+
+
+
 
             if (year % 4 != 0) {
                 if (month == 2) {
@@ -137,23 +154,50 @@ public class calculating  {
 
             if (val && cval) {
                 if (currDay > day) {
+
                     totalDay = currDay - day;
-                }
+
+                }else
 
                 if (currDay < day) {
 
+        /////////////
 
-                    if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+
+
+
+
+                    if(currMonth==3){
+
+                        if (leapYear == 1) {
+                            totalDay = (currDay + 29) - day;
+                            in = 1;
+                        }
+
+                        if (leapYear == 0) {
+                            totalDay = (currDay + 28) - day;
+                            in = 1;
+                        }
+
+                    }else
+////////
+
+                    if (currMonth == 1 || currMonth == 2 || currMonth == 7 || currMonth == 8 || currMonth == 10 || currMonth == 12) {
+
+                        if(currMonth==8||currMonth==2||currMonth==1) {
+                            totalDay = (currDay + 31) - day;
+                        }else
+                            totalDay = (currDay + 30) - day;
+
+                        in = 1;
+                    }else
+
+                    if (currMonth == 4 || currMonth == 6 || currMonth == 9 || currMonth == 11) {
                         totalDay = (currDay + 31) - day;
                         in = 1;
                     }
 
-                    if (month == 4 || month == 6 || month == 9 || month == 11) {
-                        totalDay = (currDay + 30) - day;
-                        in = 1;
-                    }
-
-                    if (month == 2) {
+                  /*  if (month == 2) {
                         if (leapYear == 1) {
                             totalDay = (currDay + 29) - day;
                             in = 1;
@@ -165,40 +209,42 @@ public class calculating  {
                         }
 
                     }
-
+*/
 
                 }
 
                 if (currMonth > month) {
-                    if (in == 1) {
+                   /* if (in == 1) {
                         totalMonth = (currMonth - 1) - month;
 
-                    }
+                    }else
                     if (in == 0) {
-                        totalMonth = currMonth - month;
-                    }
-                }
+                   */     totalMonth = currMonth-in - month;
+                  //  }
+                }else
 
-                if (month > currMonth) {
-                    s = 1;
+                if (month >= currMonth) {
                     if (in == 1) {
                         currMonth = currMonth - 1;
                         currMonth = currMonth + 12;
+                        s = 1;
+
+
                         totalMonth = currMonth - month;
                     }
                     if (in == 0) {
-                        totalMonth = (currMonth + 12) - month;
+                        totalMonth = (currMonth )-in - month;
                     }
                 }
-
-                if (s == 1) {
-                    curryear = curryear - 1;
-                    totalYear = curryear - year;
-                }
-                if (s == 0) ;
+/*
+                if (s == 0)
                 {
                     totalYear = curryear - year;
-                }
+                }else
+                if (s == 1) {
+                    curryear = curryear - 1;*/
+                    totalYear = curryear -s - year;
+  //              }
                     //return String.format(" you are %d years %d months %d days old", ty, tm, td);
                 return true;
             }
