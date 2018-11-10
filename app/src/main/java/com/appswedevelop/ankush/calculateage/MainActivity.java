@@ -7,12 +7,14 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
 private Button button;
 private EditText edCurrentDate,edDate,edYear,edCurrentYear,edMonth,edCurrentMonth;
-private  TextView ageDate,ageMonth,ageYear,nextBDMonthLeft,nextBDDaysLeft,daydob;
+private  TextView ageDate,ageMonth,ageYear,daydob;
 private ImageButton ibCurrent,ibDob;
 int day=0,month=0,year=0;
 int currDate=0,currMonth=0,currYear=0;
@@ -64,11 +66,12 @@ int count=0;
                     ageMonth.setText("00");
                     ageYear.setText("00");
                     count=0;
+                    
                 }
                 readUserInput();
                 count+=1;
                 findAge();
-                nextBirthday(currYear+1);
+                upcomingBirthday(day,month,year);
 
 
             }
@@ -142,6 +145,8 @@ int count=0;
        // nextBDDaysLeft=findViewById(R.id.nextBDDaysLeft);
         //nextBDMonthLeft=findViewById(R.id.nextBDMonthsLeft);
         daydob=findViewById(R.id.dobday);
+
+
     }
 
     private void setDefaultTime(){
@@ -246,7 +251,7 @@ int count=0;
     }
 
 
-    private void nextBirthday(int nextYear){
+   /* private void nextBirthday(int nextYear){
 
         calculating cal;
         if((currMonth>month)||(currMonth==month&&currDate>=day))
@@ -267,18 +272,30 @@ int count=0;
             }
         } catch (DobExceptions dobExceptions) {
             dobExceptions.printStackTrace();
-        } */
+        }
 
 
-    }
+    } */
 
       public String weekday(int year,int month,int day){
-        
+
           int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
           year-= (month < 3) ? 1 : 0;
           int x=( year + year/4 - year/100 + year/400 + t[month-1] + day) % 7;
           String arr[]={"SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"};
           return arr[x];
+    }
+
+    public void upcomingBirthday(int currDate,int currMonth,int currYear){
+        LinearLayout linearLayout=findViewById(R.id.llayout);
+
+
+            for(int i=0;i<linearLayout.getChildCount();i++){
+                currYear+=1;
+                ((TextView)(linearLayout.getChildAt(i))).setText(""+currDate+"/"+currMonth+"/"+currYear +"    "+weekday(currYear,currMonth,currDate));
+
+
+        }
     }
 }
 

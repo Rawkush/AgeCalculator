@@ -329,7 +329,6 @@
                  android:background="@drawable/textview_border"
                  />
           <LinearLayout
-              android:id="@+id/llayout"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
@@ -339,6 +338,47 @@
                   android:textSize="18sp"
                   android:text="Next Birthday"
                   android:textColor="@color/green_A200"/>
+
+              <LinearLayout
+                  android:id="@+id/llayout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:background="@drawable/textview_border">
+
+                 <TextView
+                     android:id="@+id/b1"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:textSize="34sp"
+                     android:text="b1"
+                     android:layout_gravity="fill"
+                    android:textColor="#ffffff" />
+                  <TextView
+                      android:id="@+id/b2"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textSize="34sp"
+                      android:text="b2"
+                      android:layout_gravity="fill"
+                      android:textColor="#ffffff" />
+                  <TextView
+                      android:id="@+id/b3"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textSize="34sp"
+                      android:text="b3"
+                      android:layout_gravity="fill"
+                      android:textColor="#ffffff" />
+                  <TextView
+                      android:id="@+id/b4"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textSize="34sp"
+                      android:text="b4"
+                      android:layout_gravity="fill"
+                      android:textColor="#ffffff" />
+              </LinearLayout>
 
 
           </LinearLayout>
