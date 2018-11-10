@@ -20,11 +20,7 @@ import android.widget.Toast;
 
 import com.appswedevelop.ankush.calculateage.exception.DobExceptions;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -255,31 +251,7 @@ int count=0;
     }
 
 
-   /* private void nextBirthday(int nextYear){
 
-        calculating cal;
-        if((currMonth>month)||(currMonth==month&&currDate>=day))
-             cal=new calculating(currDate,currMonth,currYear,day,month,nextYear);
-        else
-            cal=new calculating(currDate,currMonth,currYear,day,month,currYear);
-
-
-      /* try {
-            if(cal.AgeStatus()){
-                if(cal.getTotalYear()>0)
-                    nextBDMonthLeft.setText("12");
-                else
-                    nextBDMonthLeft.setText(""+cal.getTotalMonth());
-
-                nextBDDaysLeft.setText(""+cal.getTotalDay());
-
-            }
-        } catch (DobExceptions dobExceptions) {
-            dobExceptions.printStackTrace();
-        }
-
-
-    } */
 
       public String weekday(int year,int month,int day){
 
