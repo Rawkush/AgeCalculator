@@ -1,5 +1,4 @@
-# calculateAge
-This app takes the user date of birth and calculate his/her age, the app automatically takes the current date from the  mobile and allows user to manullay input it too.
+# AgeCalculator 📅 
+>This app takes the user Date of Birth (D.O.B)📆 and calculate his/her age, the app automatically takes the current date from the mobile and also allows user to manually add it too. The app also tell the users upcoming birth dates 🎉 🎉 too and the number of remaining days.
 
-# For any additional feature
-anyone is welcomed for giving ideas for additional feature to be inserted in the app
+##  Contributions and Suggestions  are welcome🙏
