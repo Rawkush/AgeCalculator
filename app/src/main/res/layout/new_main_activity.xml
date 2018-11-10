@@ -324,12 +324,12 @@
                  android:layout_height="wrap_content"
                  android:padding="15dp"
                  android:textSize="30sp"
-                 android:text="your birth week day"
+                 android:text=""
                  android:textColor="#ffffff"
                  android:background="@drawable/textview_border"
                  />
           <LinearLayout
-              android:id="@+id/linearlayout1"
+              android:id="@+id/linear"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"

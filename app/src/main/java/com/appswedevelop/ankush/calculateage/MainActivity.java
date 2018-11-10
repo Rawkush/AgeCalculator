@@ -67,6 +67,7 @@ int count=0;
                     ageMonth.setText("00");
                     ageYear.setText("00");
                     linearLayout1.setVisibility(View.GONE);
+                    daydob.setText(" ");
                     count=0;
 
                 }
@@ -74,7 +75,7 @@ int count=0;
                 count+=1;
                 findAge();
                 upcomingBirthday(day,month,year);
-                linearLayout1.setVisibility(View.VISIBLE);
+
 
 
             }
@@ -148,7 +149,7 @@ int count=0;
        // nextBDDaysLeft=findViewById(R.id.nextBDDaysLeft);
         //nextBDMonthLeft=findViewById(R.id.nextBDMonthsLeft);
         daydob=findViewById(R.id.dobday);
-        linearLayout1=findViewById(R.id.linearlayout1);
+        linearLayout1=findViewById(R.id.linear);
 
 
     }
@@ -236,10 +237,9 @@ int count=0;
 
                 //Avnish
                 if(count>0){
-                   Log.v("year",String.valueOf(year));
-                    Log.v("month",String.valueOf(month));
-                    Log.v("day",String.valueOf(day));
+
                     daydob.setText(weekday(year,month,day));
+                    linearLayout1.setVisibility(View.VISIBLE);
 
                 }
 
@@ -291,7 +291,7 @@ int count=0;
     }
 
     public void upcomingBirthday(int currDate,int currMonth,int currYear){
-        LinearLayout linearLayout=findViewById(R.id.llayout);
+           LinearLayout linearLayout=findViewById(R.id.llayout);
 
             String montharr[]={"JAN","FEB","MARCH","APRIL","MAY","JUNE","JULY","AUG","SEPT","OCT","NOV","DEC"};
             String monthname=null;
