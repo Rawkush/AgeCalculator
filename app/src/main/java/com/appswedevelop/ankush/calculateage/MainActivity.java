@@ -33,6 +33,7 @@ private Button button;
 private EditText edCurrentDate,edDate,edYear,edCurrentYear,edMonth,edCurrentMonth;
 private  TextView ageDate,ageMonth,ageYear,daydob;
 private ImageButton ibCurrent,ibDob;
+LinearLayout linearLayout1;
 int day=0,month=0,year=0;
 int currDate=0,currMonth=0,currYear=0;
 int count=0;
@@ -65,13 +66,15 @@ int count=0;
                     ageDate.setText("00");
                     ageMonth.setText("00");
                     ageYear.setText("00");
+                    linearLayout1.setVisibility(View.GONE);
                     count=0;
-                    
+
                 }
                 readUserInput();
                 count+=1;
                 findAge();
                 upcomingBirthday(day,month,year);
+                linearLayout1.setVisibility(View.VISIBLE);
 
 
             }
@@ -145,6 +148,7 @@ int count=0;
        // nextBDDaysLeft=findViewById(R.id.nextBDDaysLeft);
         //nextBDMonthLeft=findViewById(R.id.nextBDMonthsLeft);
         daydob=findViewById(R.id.dobday);
+        linearLayout1=findViewById(R.id.linearlayout1);
 
 
     }
@@ -289,10 +293,29 @@ int count=0;
     public void upcomingBirthday(int currDate,int currMonth,int currYear){
         LinearLayout linearLayout=findViewById(R.id.llayout);
 
+            String montharr[]={"JAN","FEB","MARCH","APRIL","MAY","JUNE","JULY","AUG","SEPT","OCT","NOV","DEC"};
+            String monthname=null;
+            switch(currMonth){
+                case 1:monthname= montharr[0]; break;
+                case 2:monthname= montharr[1]; break;
+                case 3:monthname= montharr[2]; break;
+                case 4:monthname= montharr[3]; break;
+                case 5:monthname= montharr[4]; break;
+                case 6:monthname= montharr[5]; break;
+                case 7:monthname= montharr[6]; break;
+                case 8:monthname= montharr[7]; break;
+                case 9:monthname= montharr[8]; break;
+                case 10:monthname= montharr[9]; break;
+                case 11:monthname= montharr[10]; break;
+                case 12:monthname= montharr[11]; break;
 
+
+
+
+            }
             for(int i=0;i<linearLayout.getChildCount();i++){
                 currYear+=1;
-                ((TextView)(linearLayout.getChildAt(i))).setText(""+currDate+"/"+currMonth+"/"+currYear +"    "+weekday(currYear,currMonth,currDate));
+                ((TextView)(linearLayout.getChildAt(i))).setText(""+currDate+"-"+monthname+"-"+currYear+"  "+weekday(currYear,currMonth,currDate));
 
 
         }
