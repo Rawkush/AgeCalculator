@@ -29,6 +29,7 @@ private  TextView ageDate,ageMonth,ageYear,nextBDMonthLeft,nextBDDaysLeft;
 private ImageButton ibCurrent,ibDob;
 int day=0,month=0,year=0;
 int currDate=0,currMonth=0,currYear=0;
+int count=0;
 
 
     @Override
@@ -54,10 +55,17 @@ int currDate=0,currMonth=0,currYear=0;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(count>0){
+                    ageDate.setText("00");
+                    ageMonth.setText("00");
+                    ageYear.setText("00");
+                    count=0;
+                }
                 readUserInput();
                 findAge();
                 nextBirthday(currYear+1);
+                count+=1;
+
             }
         });
 
@@ -205,9 +213,9 @@ int currDate=0,currMonth=0,currYear=0;
         // if Dates are Valid
         try {
             if(cal.AgeStatus()){
-                ageYear.setText(String.valueOf(cal.getTotalYear())+" years");
-                ageMonth.setText(String.valueOf(cal.getTotalMonth())+" months");
-                ageDate.setText(String.valueOf(cal.getTotalDay())+" Days");
+                ageYear.setText(String.valueOf(cal.getTotalYear()));
+                ageMonth.setText(String.valueOf(cal.getTotalMonth()));
+                ageDate.setText(String.valueOf(cal.getTotalDay()));
             }
         } catch (DobExceptions dobExceptions) {
 

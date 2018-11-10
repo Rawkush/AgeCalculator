@@ -35,7 +35,7 @@ public class calculating  {
     private boolean dob_validity() throws DobExceptions {
 
         if((curryear==year&&currMonth==month&&day>currDay)||(year>curryear)||(year==curryear&&month>currMonth)){
-            throw new DobExceptions("You are Yet to be Born");
+            throw new DobExceptions("Wrong DOB or current Date");
         }
 
         if ( year <= curryear && curryear > 0 && year > 0) {
