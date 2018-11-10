@@ -63,6 +63,8 @@ int count=0;
                 }
                 readUserInput();
                 findAge();
+
+
                 nextBirthday(currYear+1);
                 count+=1;
 
