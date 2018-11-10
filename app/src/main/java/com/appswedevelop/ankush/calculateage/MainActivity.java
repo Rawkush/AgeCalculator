@@ -7,6 +7,7 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,14 +19,17 @@ import android.widget.Toast;
 import com.appswedevelop.ankush.calculateage.exception.DobExceptions;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
 
 public class MainActivity extends AppCompatActivity {
 
 private Button button;
 private EditText edCurrentDate,edDate,edYear,edCurrentYear,edMonth,edCurrentMonth;
-private  TextView ageDate,ageMonth,ageYear,nextBDMonthLeft,nextBDDaysLeft;
+private  TextView ageDate,ageMonth,ageYear,nextBDMonthLeft,nextBDDaysLeft,daydob;
 private ImageButton ibCurrent,ibDob;
 int day=0,month=0,year=0;
 int currDate=0,currMonth=0,currYear=0;
@@ -62,9 +66,10 @@ int count=0;
                     count=0;
                 }
                 readUserInput();
+                count+=1;
                 findAge();
                 nextBirthday(currYear+1);
-                count+=1;
+
 
             }
         });
@@ -85,6 +90,7 @@ int count=0;
                 // TODO Auto-generated method stub
                 if(id.equals("dob")){
                     setEdDOB(dayOfMonth,monthOfYear,year);
+
                 }else{
                     setEdCurrentDates(dayOfMonth,monthOfYear,year);
 
@@ -117,6 +123,7 @@ int count=0;
         edDate.setText(String.valueOf(day));
         edMonth.setText(String.valueOf(month +1));
         edYear.setText(String.valueOf(year));
+
     }
 
     private void initialiseViews(){
@@ -132,13 +139,14 @@ int count=0;
         ageYear=findViewById(R.id.ageYear);
         ibCurrent=findViewById(R.id.ibcurr);
         ibDob=findViewById(R.id.ibdob);
-        nextBDDaysLeft=findViewById(R.id.nextBDDaysLeft);
-        nextBDMonthLeft=findViewById(R.id.nextBDMonthsLeft);
+       // nextBDDaysLeft=findViewById(R.id.nextBDDaysLeft);
+        //nextBDMonthLeft=findViewById(R.id.nextBDMonthsLeft);
+        daydob=findViewById(R.id.dobday);
     }
 
     private void setDefaultTime(){
         final Calendar c = Calendar.getInstance();
-        setEdCurrentDates(c.get(Calendar.DATE),   c.get(Calendar.MONTH), c.get(Calendar.YEAR));
+        setEdCurrentDates(c.get(Calendar.DATE),c.get(Calendar.MONTH),c.get(Calendar.YEAR));
       /*  String s=getTodaysDefaultDate();
 
         if(s!=null){
@@ -216,6 +224,16 @@ int count=0;
                 ageYear.setText(String.valueOf(cal.getTotalYear()));
                 ageMonth.setText(String.valueOf(cal.getTotalMonth()));
                 ageDate.setText(String.valueOf(cal.getTotalDay()));
+
+                //Avnish
+                if(count>0){
+                   Log.v("year",String.valueOf(year));
+                    Log.v("month",String.valueOf(month));
+                    Log.v("day",String.valueOf(day));
+                    daydob.setText(weekday(year,month,day));
+
+                }
+
             }
         } catch (DobExceptions dobExceptions) {
 
@@ -237,7 +255,7 @@ int count=0;
             cal=new calculating(currDate,currMonth,currYear,day,month,currYear);
 
 
-        try {
+      /* try {
             if(cal.AgeStatus()){
                 if(cal.getTotalYear()>0)
                     nextBDMonthLeft.setText("12");
@@ -249,11 +267,19 @@ int count=0;
             }
         } catch (DobExceptions dobExceptions) {
             dobExceptions.printStackTrace();
-        }
+        } */
 
 
     }
 
-
-
+      public String weekday(int year,int month,int day){
+        
+          int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+          year-= (month < 3) ? 1 : 0;
+          int x=( year + year/4 - year/100 + year/400 + t[month-1] + day) % 7;
+          String arr[]={"SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"};
+          return arr[x];
+    }
 }
+
+
