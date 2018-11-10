@@ -57,6 +57,8 @@ int currDate=0,currMonth=0,currYear=0;
 
                 readUserInput();
                 findAge();
+
+
                 nextBirthday(currYear+1);
             }
         });
