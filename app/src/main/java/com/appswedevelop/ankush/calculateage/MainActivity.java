@@ -7,26 +7,29 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appswedevelop.ankush.calculateage.exception.DobExceptions;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+
 
 public class MainActivity extends AppCompatActivity {
 
 private Button button;
 private EditText edCurrentDate,edDate,edYear,edCurrentYear,edMonth,edCurrentMonth;
-private  TextView ageDate,ageMonth,ageYear,nextBDMonthLeft,nextBDDaysLeft;
+private  TextView ageDate,ageMonth,ageYear,daydob;
 private ImageButton ibCurrent,ibDob;
+LinearLayout linearLayout1;
 int day=0,month=0,year=0;
 int currDate=0,currMonth=0,currYear=0;
 int count=0;
@@ -59,14 +62,17 @@ int count=0;
                     ageDate.setText("00");
                     ageMonth.setText("00");
                     ageYear.setText("00");
+                    linearLayout1.setVisibility(View.GONE);
+                    daydob.setText(" ");
                     count=0;
+
                 }
                 readUserInput();
-                findAge();
-
-
-                nextBirthday(currYear+1);
                 count+=1;
+                findAge();
+                upcomingBirthday(day,month,year);
+
+
 
             }
         });
@@ -87,6 +93,7 @@ int count=0;
                 // TODO Auto-generated method stub
                 if(id.equals("dob")){
                     setEdDOB(dayOfMonth,monthOfYear,year);
+
                 }else{
                     setEdCurrentDates(dayOfMonth,monthOfYear,year);
 
@@ -119,6 +126,7 @@ int count=0;
         edDate.setText(String.valueOf(day));
         edMonth.setText(String.valueOf(month +1));
         edYear.setText(String.valueOf(year));
+
     }
 
     private void initialiseViews(){
@@ -134,13 +142,17 @@ int count=0;
         ageYear=findViewById(R.id.ageYear);
         ibCurrent=findViewById(R.id.ibcurr);
         ibDob=findViewById(R.id.ibdob);
-        nextBDDaysLeft=findViewById(R.id.nextBDDaysLeft);
-        nextBDMonthLeft=findViewById(R.id.nextBDMonthsLeft);
+       // nextBDDaysLeft=findViewById(R.id.nextBDDaysLeft);
+        //nextBDMonthLeft=findViewById(R.id.nextBDMonthsLeft);
+        daydob=findViewById(R.id.dobday);
+        linearLayout1=findViewById(R.id.linear);
+
+
     }
 
     private void setDefaultTime(){
         final Calendar c = Calendar.getInstance();
-        setEdCurrentDates(c.get(Calendar.DATE),   c.get(Calendar.MONTH), c.get(Calendar.YEAR));
+        setEdCurrentDates(c.get(Calendar.DATE),c.get(Calendar.MONTH),c.get(Calendar.YEAR));
       /*  String s=getTodaysDefaultDate();
 
         if(s!=null){
@@ -218,6 +230,15 @@ int count=0;
                 ageYear.setText(String.valueOf(cal.getTotalYear()));
                 ageMonth.setText(String.valueOf(cal.getTotalMonth()));
                 ageDate.setText(String.valueOf(cal.getTotalDay()));
+
+                //Avnish
+                if(count>0){
+
+                    daydob.setText(weekday(year,month,day));
+                    linearLayout1.setVisibility(View.VISIBLE);
+
+                }
+
             }
         } catch (DobExceptions dobExceptions) {
 
@@ -230,32 +251,47 @@ int count=0;
     }
 
 
-    private void nextBirthday(int nextYear){
-
-        calculating cal;
-        if((currMonth>month)||(currMonth==month&&currDate>=day))
-             cal=new calculating(currDate,currMonth,currYear,day,month,nextYear);
-        else
-            cal=new calculating(currDate,currMonth,currYear,day,month,currYear);
 
 
-        try {
-            if(cal.AgeStatus()){
-                if(cal.getTotalYear()>0)
-                    nextBDMonthLeft.setText("12");
-                else
-                    nextBDMonthLeft.setText(""+cal.getTotalMonth());
+      public String weekday(int year,int month,int day){
 
-                nextBDDaysLeft.setText(""+cal.getTotalDay());
-
-            }
-        } catch (DobExceptions dobExceptions) {
-            dobExceptions.printStackTrace();
-        }
-
-
+          int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+          year-= (month < 3) ? 1 : 0;
+          int x=( year + year/4 - year/100 + year/400 + t[month-1] + day) % 7;
+          String arr[]={"SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"};
+          return arr[x];
     }
 
+    public void upcomingBirthday(int currDate,int currMonth,int currYear){
+           LinearLayout linearLayout=findViewById(R.id.llayout);
+
+            String montharr[]={"JAN","FEB","MARCH","APRIL","MAY","JUNE","JULY","AUG","SEPT","OCT","NOV","DEC"};
+            String monthname=null;
+            switch(currMonth){
+                case 1:monthname= montharr[0]; break;
+                case 2:monthname= montharr[1]; break;
+                case 3:monthname= montharr[2]; break;
+                case 4:monthname= montharr[3]; break;
+                case 5:monthname= montharr[4]; break;
+                case 6:monthname= montharr[5]; break;
+                case 7:monthname= montharr[6]; break;
+                case 8:monthname= montharr[7]; break;
+                case 9:monthname= montharr[8]; break;
+                case 10:monthname= montharr[9]; break;
+                case 11:monthname= montharr[10]; break;
+                case 12:monthname= montharr[11]; break;
 
 
+
+
+            }
+            for(int i=0;i<linearLayout.getChildCount();i++){
+                currYear+=1;
+                ((TextView)(linearLayout.getChildAt(i))).setText(""+currDate+"-"+monthname+"-"+currYear+"  "+weekday(currYear,currMonth,currDate));
+
+
+        }
+    }
 }
+
+
