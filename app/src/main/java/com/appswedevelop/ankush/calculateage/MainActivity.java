@@ -67,7 +67,12 @@ int count=0;
                     count=0;
 
                 }
-                readUserInput();
+                try {
+                    readUserInput();
+                } catch (DobExceptions dobExceptions) {
+                    dobExceptions.printStackTrace();
+                    Toast.makeText(getApplicationContext(),dobExceptions.getMessage(),Toast.LENGTH_SHORT).show();
+                }
                 count+=1;
                 findAge();
                 upcomingBirthday(day,month,year);
@@ -172,11 +177,13 @@ int count=0;
     }*/
 
 
-    private void readUserInput(){
+    private void readUserInput() throws DobExceptions{
 
         String s;
+        boolean errorFound=false;
         s=edDate.getText().toString();
         if(s.equals("")){
+            errorFound=true;
             edDate.setError("This field can not be blank");
         }else
         day= Integer.parseInt(s);
@@ -184,30 +191,35 @@ int count=0;
 
         s=edMonth.getText().toString();
         if(s.equals("")){
+            errorFound=true;
             edMonth.setError("This field can not be blank");
         }else
         month= Integer.parseInt(s);
 
         s=edYear.getText().toString();
         if(s.equals("")){
+            errorFound=true;
             edYear.setError("This field can not be blank");
         }else
         year= Integer.parseInt(s);
 
         s=edCurrentDate.getText().toString();
         if(s.equals("")){
+            errorFound=true;
             edCurrentDate.setError("This field can not be blank");
         }else
         currDate= Integer.parseInt(s);
 
         s=edCurrentMonth.getText().toString();
         if(s.equals("")){
+            errorFound=true;
             edCurrentMonth.setError("This field can not be blank");
         }else
         currMonth= Integer.parseInt(s);
 
         s=edCurrentYear.getText().toString();
         if(s.equals("")){
+            errorFound=true;
             edCurrentYear.setError("This field can not be blank");
         }else
         currYear= Integer.parseInt(s);
@@ -216,6 +228,15 @@ int count=0;
         if(error.length()>0)
             throw new DobExceptions(error);
         */
+
+        if (errorFound){
+            throw new DobExceptions("Empty fields");
+        }
+
+
+
+
+
     }
 
 
