@@ -223,22 +223,25 @@ public class calculating  {
                   //  }
                 }else
 
-                if (month >= currMonth) {
-                  /*  if (in == 1) {
-                        currMonth = currMonth - 1;
-                        currMonth = currMonth + 12;
-                        s = 1;
-                        totalMonth = currMonth - month;
-                    }
-                    if (in == 0) {
-                        totalMonth = (currMonth ) - month;
-                    }
-*/
-                    currMonth = currMonth - in;
+                if (month > currMonth) {
+                       s = 1;
+                       currMonth = currMonth - in;
+                       currMonth = currMonth + 12;
+                       totalMonth = currMonth - month;
+                }else{
 
-                    currMonth = currMonth + 12;
-                    s = 1;
+                    // month== current month
+
+                    if(in==1){
+                        currMonth--;
+                        s = 1;
+                        currMonth = currMonth + 12;
+
+                    }
+
                     totalMonth = currMonth - month;
+
+
                 }
 /*
                 if (s == 0)
