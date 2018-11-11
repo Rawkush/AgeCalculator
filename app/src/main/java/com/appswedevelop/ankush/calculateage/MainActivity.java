@@ -58,24 +58,27 @@ int count=0;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(count>0){
-                    ageDate.setText("00");
-                    ageMonth.setText("00");
-                    ageYear.setText("00");
-                    linearLayout1.setVisibility(View.GONE);
-                    daydob.setText(" ");
-                    count=0;
-
-                }
                 try {
                     readUserInput();
+
+                    if(count>0){
+                        ageDate.setText("00");
+                        ageMonth.setText("00");
+                        ageYear.setText("00");
+                        linearLayout1.setVisibility(View.GONE);
+                        daydob.setText(" ");
+                        count=0;
+
+                    }
+
+                    count+=1;
+                    findAge();
+                    upcomingBirthday(day,month,year);
+
                 } catch (DobExceptions dobExceptions) {
                     dobExceptions.printStackTrace();
                     Toast.makeText(getApplicationContext(),dobExceptions.getMessage(),Toast.LENGTH_SHORT).show();
                 }
-                count+=1;
-                findAge();
-                upcomingBirthday(day,month,year);
 
 
 
@@ -185,45 +188,54 @@ int count=0;
         if(s.equals("")){
             errorFound=true;
             edDate.setError("This field can not be blank");
-        }else
-        day= Integer.parseInt(s);
+        }else {
+            day = Integer.parseInt(s);
+            edDate.setError(null);
 
-
+        }
         s=edMonth.getText().toString();
         if(s.equals("")){
             errorFound=true;
             edMonth.setError("This field can not be blank");
-        }else
-        month= Integer.parseInt(s);
-
+        }else {
+            edMonth.setError(null);
+            month = Integer.parseInt(s);
+        }
         s=edYear.getText().toString();
         if(s.equals("")){
             errorFound=true;
             edYear.setError("This field can not be blank");
-        }else
-        year= Integer.parseInt(s);
+        }else {
+            edYear.setError(null);
 
+            year = Integer.parseInt(s);
+        }
         s=edCurrentDate.getText().toString();
         if(s.equals("")){
             errorFound=true;
             edCurrentDate.setError("This field can not be blank");
-        }else
-        currDate= Integer.parseInt(s);
-
+        }else {
+            edCurrentDate.setError(null);
+            currDate = Integer.parseInt(s);
+        }
         s=edCurrentMonth.getText().toString();
         if(s.equals("")){
             errorFound=true;
             edCurrentMonth.setError("This field can not be blank");
-        }else
-        currMonth= Integer.parseInt(s);
+        }else {
+            edCurrentMonth.setError(null);
 
+            currMonth = Integer.parseInt(s);
+        }
         s=edCurrentYear.getText().toString();
         if(s.equals("")){
             errorFound=true;
             edCurrentYear.setError("This field can not be blank");
-        }else
-        currYear= Integer.parseInt(s);
+        }else {
+            edCurrentYear.setError(null);
 
+            currYear = Integer.parseInt(s);
+        }
         /*
         if(error.length()>0)
             throw new DobExceptions(error);
