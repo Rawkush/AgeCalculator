@@ -224,7 +224,7 @@ public class calculating  {
                 }else
 
                 if (month >= currMonth) {
-                  /*  if (in == 1) {
+                   if (in == 1) {
                         currMonth = currMonth - 1;
                         currMonth = currMonth + 12;
                         s = 1;
@@ -233,12 +233,8 @@ public class calculating  {
                     if (in == 0) {
                         totalMonth = (currMonth ) - month;
                     }
-*/
-                    currMonth = currMonth - in;
 
-                    currMonth = currMonth + 12;
-                    s = 1;
-                    totalMonth = currMonth - month;
+
                 }
 /*
                 if (s == 0)
