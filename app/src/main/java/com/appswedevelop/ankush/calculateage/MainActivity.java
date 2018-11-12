@@ -73,7 +73,7 @@ int count=0;
 
                     count+=1;
                     findAge();
-                    upcomingBirthday(day,month,year);
+                    upcomingBirthday(day,month,currYear);
 
                 } catch (DobExceptions dobExceptions) {
                     dobExceptions.printStackTrace();
