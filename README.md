@@ -9,8 +9,7 @@
    ![GitHub watchers](https://img.shields.io/github/watchers/rawkush/AgeCalculator?style=social) <br /> ![GitHub all releases](https://img.shields.io/github/downloads/rawkush/AgeCalculator/total?style=plastic) <br />
 
    ![GitHub](https://img.shields.io/github/license/rawkush/AgeCalculator?style=plastic)
-   [![HitCount](http://hits.dwyl.com/rawkush/AgeCalculator.svg)](http://hits.dwyl.com/rawkush/AgeCalculator)
-   
+![ViewCount](https://views.whatilearened.today/views/github/rawkush/agecalcalculator.svg)   
 
 >This app takes the user Date of Birth (D.O.B)📆 and calculate his/her age, the app automatically takes the current date from the mobile and also allows user to manually add it too. The app also tell the users upcoming birth dates 🎉 🎉 too and the number of remaining days.
 
